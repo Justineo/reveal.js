@@ -136,13 +136,13 @@ body {
 	font-weight: bold;
 }
 
-#reveal strong {
+.reveal strong {
 	font-weight: normal;
 	color: gold;
 }
 
-#reveal em, 
-#reveal i {
+.reveal em, 
+.reveal i {
 	font-style: italic;
 }
 
@@ -280,7 +280,7 @@ body {
 	        transition: all .2s linear;
 }
 
-	#reveal a:hover img {
+	.reveal a:hover img {
 		background: #fff;
 		border-color: #13DAEC;
 		
