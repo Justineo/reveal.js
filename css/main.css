@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /**
  * Main styles for reveal.js 
  *
@@ -12,7 +11,14 @@
 
 @font-face {
 	font-family: 'League Gothic';
-	src: url('../lib/font/league_gothic-webfont.ttf') format('truetype');
+	src: url('../lib/fonts/league_gothic-webfont.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Myriad Pro';
+	src: url('../lib/fonts/MyriadPro-Regular.otf') format('opentype');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -36,7 +42,7 @@ body {
 	margin: 0;
 	overflow: hidden;
 	
-	font-family: 'Lato', Times, 'Times New Roman', serif;
+	font-family: 'Myriad Pro', 'Hiragino Sans GB', 'WenQuanYi Zen Hei', 'Microsoft Yahei', sans-serif;
 	font-size: 36px;
 	font-weight: 200;
 	letter-spacing: -0.02em;
@@ -59,19 +65,18 @@ body {
 .reveal h2, 
 .reveal h3, 
 .reveal h4 {
-	margin: 0 0 20px 0;
+	margin: 0 0 40px 0;
 	
 	color: #eee;
 	
-	font-family: 'League Gothic', sans-serif;
 	line-height: 0.9em;
 	letter-spacing: 0.02em;
 	
-	text-transform: uppercase;
+	/*text-transform: uppercase;*/
 	text-shadow: 0px 0px 6px rgba(0,0,0,0.2);
 }
 
-.reveal h1 { font-size: 136px; 	}
+.reveal h1 { font-size: 108px; 	}
 .reveal h2 { font-size: 76px;	}
 .reveal h3 { font-size: 56px;	}
 .reveal h4 { font-size: 36px;	}
@@ -85,11 +90,11 @@ body {
 }
 
 .reveal h1 {
-	text-shadow: 0 1px 0 #ccc,
+	text-shadow: /*0 1px 0 #ccc,
                  0 2px 0 #c9c9c9,
                  0 3px 0 #bbb,
                  0 4px 0 #b9b9b9,
-                 0 5px 0 #aaa,
+                 0 5px 0 #aaa,*/
                  0 6px 1px rgba(0,0,0,.1),
                  0 0 5px rgba(0,0,0,.1),
                  0 1px 3px rgba(0,0,0,.3),
@@ -122,7 +127,7 @@ body {
  *********************************************/
 
 .reveal .slides section {
-	line-height: 1.2em;
+	line-height: 1.6;
 	font-weight: normal;
 }
 
@@ -131,8 +136,13 @@ body {
 	font-weight: bold;
 }
 
-.reveal em, 
-.reveal i {
+#reveal strong {
+	font-weight: normal;
+	color: gold;
+}
+
+#reveal em, 
+#reveal i {
 	font-style: italic;
 }
 
@@ -141,35 +151,37 @@ body {
 	display: inline-block;
 
 	text-align: left;
-	margin: 0 auto;
+	margin: 0 auto 20px;
 }
 
 .reveal ol {
-	list-style-type: decimal;
+	list-style: decimal;
+	list-style-position: inside;
 }
 
 .reveal ul {
-	list-style-type: disc;
+	list-style: disc;
 }
 
 .reveal ul ul {
-	list-style-type: square;
-}
-
-.reveal ul ul ul {
-	list-style-type: circle;
-}
-
-.reveal ul ul,
-.reveal ul ol,
-.reveal ol ol,
-.reveal ol ul {
-	display: block;
-	margin-left: 40px;
+	margin-left: 28px;
+	list-style: square;
+	font-size: 80%;
 }
 
 .reveal p {
 	margin-bottom: 10px;
+}
+
+.reveal p.left,
+.reveal section.left,
+.reveal h1.left,
+.reveal h2.left,
+.reveal h3.left,
+.reveal h4.left,
+.reveal h5.left,
+.reveal h6.left {
+	text-align: left;
 }
 
 .reveal blockquote {
@@ -197,37 +209,29 @@ body {
 	margin: 10px auto;
 
 	text-align: left;
-	font-size: 20px;
-	font-family: monospace;
-	line-height: 1.2em;
+	font-size: 24px;
+	font-family: 'Courier New', monospace;
+	line-height: 1.1em;
 
 	word-wrap: break-word;
 
 	box-shadow: 0px 0px 6px rgba(0,0,0,0.3);
 }
 
+.reveal pre code {
+	background: none;
+	padding: 10px 20px;
+}
+
 .reveal code {
-	font-family: monospace;
-}
-
-.reveal table th, 
-.reveal table td {
- 	 text-align: left;
- 	 padding-right: .3em;
-}
-
-.reveal table th {
- 	 text-shadow: rgb(255,255,255) 1px 1px 2px;
+	font-family: 'Courier New', monospace;
 }
 
 .reveal small {
 	font-size: 60%;
+	color: #ccc;
 	line-height: 1em;
-	vertical-align: top;
-}
-
-.reveal small * {
-	vertical-align: top;
+	vertical-align: baseline;
 }
 
 .reveal q {	
@@ -260,8 +264,9 @@ body {
 	}
 
 .reveal section img {
-	margin: 30px 0 0 0;
-	background: rgba(255,255,255,0.12);
+	margin: 20px 0 0 0;
+	padding: 5px;
+	background: #fff;
 	border: 4px solid #eee;
 	
 	-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
@@ -275,8 +280,8 @@ body {
 	        transition: all .2s linear;
 }
 
-	.reveal a:hover img {
-		background: rgba(255,255,255,0.2);
+	#reveal a:hover img {
+		background: #fff;
 		border-color: #13DAEC;
 		
 		-webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.55);
@@ -284,6 +289,61 @@ body {
 		        box-shadow: 0 0 20px rgba(0, 0, 0, 0.55);
 	}
 
+.reveal acronym, abbr {
+	border-bottom: 1px dotted #999;
+	cursor: pointer;
+}
+
+.reveal table {
+	margin: 0 auto 20px;
+	border-collapse: collapse;
+	background-color: rgba(255, 255, 255, 0.05);
+}
+.reveal th {
+	color: #999;
+}
+.reveal td,
+.reveal th {
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	padding: 5px 10px;
+}
+.reveal td,
+.reveal th,
+.reveal td img,
+.reveal th img {
+	margin: 0;
+	vertical-align: middle;
+}
+.reveal .mini-title th {
+	font-size: 24px;
+}
+
+.reveal var {
+	font-family: Georgia, serif;
+	font-style: italic;
+}
+
+.reveal .highlight {
+	display: block;
+	position: relative;
+	margin: 20px auto;
+	padding: 5px;
+	
+	background: rgba(0, 0, 0, 0.4);
+	box-shadow: 0px 0px 2px rgba(255, 255, 255, 0.3);
+}
+
+.reveal .highlight code {
+	font-size:90%;
+}
+
+.reveal .trivial {
+	color: #999;
+}
+
+.reveal .slogan {
+	margin-top: 25%;
+}
 
 /*********************************************
  * CONTROLS
@@ -298,6 +358,8 @@ body {
 
 	right: 0;
 	bottom: 0;
+
+	font-family: Times;
 }
 	
 	.reveal .controls a {
@@ -538,8 +600,9 @@ body {
 }
 .reveal .slides>section>section.future {
 	display: block;
+	z-index: 9;
 	opacity: 0;
-	
+
 	-webkit-transform: translate3d(0, 50%, 0) rotateX(-70deg) translate3d(0, 50%, 0);
 	   -moz-transform: translate3d(0, 50%, 0) rotateX(-70deg) translate3d(0, 50%, 0);
 	    -ms-transform: translate3d(0, 50%, 0) rotateX(-70deg) translate3d(0, 50%, 0);
@@ -1004,4 +1067,36 @@ body {
 
 .reveal aside.notes {
 	display: none;
+}
+
+/*********************************************
+ * FAVICON
+ *********************************************/
+
+.favicon {
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+	margin: 5px;
+	border-radius: 4px;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-color: rgba(255, 255, 255, 0.8);
+	box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+}
+
+.favicon:hover {
+	background-color: #fff;
+}
+
+.favicon.weibo {
+	background-image: url(../img/favicon/weibo.png);
+}
+
+.favicon.twitter {
+	background-image: url(../img/favicon/twitter.png);
+}
+
+.favicon.lync-in {
+	background-image: url(../img/favicon/lync.in.png);
 }
