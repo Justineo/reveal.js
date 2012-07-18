@@ -11,14 +11,14 @@
 
 @font-face {
 	font-family: 'League Gothic';
-	src: url('../lib/fonts/league_gothic-webfont.ttf') format('truetype');
+	src: url('../lib/font/league_gothic-webfont.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: 'Myriad Pro';
-	src: url('../lib/fonts/MyriadPro-Regular.otf') format('opentype');
+	src: url('../lib/font/MyriadPro-Regular.otf') format('opentype');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -42,7 +42,7 @@ body {
 	margin: 0;
 	overflow: hidden;
 	
-	font-family: 'Lato', 'Hiragino Sans GB', 'WenQuanYi Zen Hei', 'Microsoft Yahei', sans-serif;
+	font-family: 'Myriad Pro', 'Hiragino Sans GB', 'WenQuanYi Zen Hei', 'Microsoft Yahei', sans-serif;
 	font-size: 36px;
 	font-weight: 200;
 	letter-spacing: -0.02em;
@@ -101,6 +101,10 @@ body {
                  0 3px 5px rgba(0,0,0,.2),
                  0 5px 10px rgba(0,0,0,.25),
                  0 20px 20px rgba(0,0,0,.15);
+}
+
+.reveal h1 abbr {
+	border-bottom: 5px dotted #ccc;
 }
 
 
