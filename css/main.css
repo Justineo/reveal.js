@@ -42,7 +42,7 @@ body {
 	margin: 0;
 	overflow: hidden;
 	
-	font-family: 'Myriad Pro', 'Hiragino Sans GB', 'WenQuanYi Zen Hei', 'Microsoft Yahei', sans-serif;
+	font-family: 'Myriad Pro', 'Hiragino Sans GB W6', 'WenQuanYi Zen Hei', 'Microsoft Yahei', sans-serif;
 	font-size: 36px;
 	font-weight: 200;
 	letter-spacing: -0.02em;
@@ -90,6 +90,8 @@ body {
 }
 
 .reveal h1 {
+	margin-top: 80px;
+
 	text-shadow: /*0 1px 0 #ccc,
                  0 2px 0 #c9c9c9,
                  0 3px 0 #bbb,
@@ -193,7 +195,7 @@ body {
 	position: relative;
 	width: 70%;
 	margin: 5px auto;
-	padding: 5px;
+	padding: 15px;
 	
 	font-style: italic;
 	background: rgba(255, 255, 255, 0.05);
@@ -345,7 +347,7 @@ body {
 	color: #999;
 }
 
-.reveal .slogan {
+.reveal .exclusive {
 	margin-top: 25%;
 }
 
