@@ -23,6 +23,12 @@
 	font-style: normal;
 }
 
+@font-face {
+	font-family: 'Myriad Pro';
+	src: url('../lib/font/MyriadPro-Semibold.otf') format('opentype');
+	font-weight: bold;
+	font-style: normal;
+}
 
 /*********************************************
  * GLOBAL STYLES
@@ -42,7 +48,7 @@ body {
 	margin: 0;
 	overflow: hidden;
 	
-	font-family: 'Myriad Pro', 'Hiragino Sans GB W6', 'WenQuanYi Zen Hei', 'Microsoft Yahei', sans-serif;
+	font-family: 'Myriad Pro', 'Hiragino Sans GB W3', 'WenQuanYi Zen Hei', 'Microsoft Yahei', sans-serif;
 	font-size: 36px;
 	font-weight: 200;
 	letter-spacing: -0.02em;
@@ -73,7 +79,9 @@ body {
 	letter-spacing: 0.02em;
 	
 	/*text-transform: uppercase;*/
-	text-shadow: 0px 0px 6px rgba(0,0,0,0.2);
+	font-family: 'Myriad Pro', 'Hiragino Sans GB W6', 'WenQuanYi Zen Hei', 'Microsoft Yahei', sans-serif;
+	font-weight: bold;
+	text-shadow: 0px 2px 3px rgba(0,0,0,0.8);
 }
 
 .reveal h1 { font-size: 108px; 	}
@@ -177,17 +185,6 @@ body {
 
 .reveal p {
 	margin-bottom: 10px;
-}
-
-.reveal p.left,
-.reveal section.left,
-.reveal h1.left,
-.reveal h2.left,
-.reveal h3.left,
-.reveal h4.left,
-.reveal h5.left,
-.reveal h6.left {
-	text-align: left;
 }
 
 .reveal blockquote {
@@ -327,6 +324,15 @@ body {
 .reveal var {
 	font-family: Georgia, serif;
 	font-style: italic;
+}
+
+.reveal .left {
+	text-align: left;
+}
+
+.reveal .blur {
+	color: transparent;
+	text-shadow: 0 0 3px rgba(255, 255, 255, 0.5);
 }
 
 .reveal .highlight {
