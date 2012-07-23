@@ -357,6 +357,14 @@ body {
 	margin-top: 25%;
 }
 
+.reveal .pull-left {
+	float: left;
+}
+
+.reveal .pull-right {
+	float: right;
+}
+
 /*********************************************
  * CONTROLS
  *********************************************/
