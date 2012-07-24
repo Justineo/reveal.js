@@ -330,6 +330,14 @@ body {
 	text-align: left;
 }
 
+.reveal .right {
+	text-align: right;
+}
+
+.reveal .justify {
+	text-align: justify;
+}
+
 .reveal .blur {
 	color: transparent;
 	text-shadow: 0 0 3px rgba(255, 255, 255, 0.5);
