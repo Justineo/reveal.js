@@ -48,7 +48,7 @@ body {
 	margin: 0;
 	overflow: hidden;
 	
-	font-family: 'Myriad Pro', 'Hiragino Sans GB', 'Hiragino Sans GB W3', 'WenQuanYi Zen Hei', 'Microsoft Yahei', sans-serif;
+	font-family: 'Myriad Pro', 'Hiragino Sans GB W3', 'Hiragino Sans GB', 'WenQuanYi Zen Hei', 'Microsoft Yahei', sans-serif;
 	font-size: 36px;
 	font-weight: 200;
 	letter-spacing: -0.02em;
@@ -336,6 +336,12 @@ body {
 
 .reveal .justify {
 	text-align: justify;
+}
+
+.reveal section img.transparent {
+	border: none;
+	background: none;
+    box-shadow: none;
 }
 
 .reveal .blur {
