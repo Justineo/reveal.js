@@ -18,14 +18,14 @@
 
 @font-face {
 	font-family: 'Myriad Pro';
-	src: url('../lib/font/MyriadPro-Regular.otf') format('opentype');
+	src: local('Myriad Pro'), url('../lib/font/MyriadPro-Regular.otf') format('opentype');
 	font-weight: normal;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: 'Myriad Pro';
-	src: url('../lib/font/MyriadPro-Semibold.otf') format('opentype');
+	src: local('Myriad Pro Light'), url('../lib/font/MyriadPro-Semibold.otf') format('opentype');
 	font-weight: bold;
 	font-style: normal;
 }
@@ -363,7 +363,7 @@ body {
 	font-size:90%;
 }
 
-.reveal .trivial {
+.reveal .aux {
 	color: #999;
 }
 
