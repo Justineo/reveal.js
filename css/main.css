@@ -211,6 +211,7 @@ body {
 	position: relative;
 	width: 90%;
 	margin: 10px auto;
+	padding: 5px 15px;
 
 	text-align: left;
 	font-size: 24px;
@@ -224,12 +225,11 @@ body {
 
 .reveal li pre {
 	margin-left: 0;
-	width: 800px;
+	width: 770px;
 }
 
 .reveal pre code {
 	background: none;
-	padding: 10px 20px;
 }
 
 .reveal code {
@@ -272,7 +272,7 @@ body {
 		border-radius: 2px;
 	}
 
-.reveal section img {
+.reveal section img, .reveal section .img {
 	margin: 20px 0 0 0;
 	padding: 5px;
 	background: #fff;
@@ -289,7 +289,7 @@ body {
 	        transition: all .2s linear;
 }
 
-	.reveal a:hover img {
+	.reveal a:hover img, .reveal a:hover .img {
 		background: #fff;
 		border-color: #13DAEC;
 		
@@ -348,6 +348,16 @@ body {
 	text-align: justify;
 }
 
+.reveal ul.left {
+	display: block;
+	margin-left: 1em;
+}
+
+.reveal ul.right {
+	display: block;
+	margin-right: 1em;
+}
+
 .reveal section img.transparent {
 	border: none;
 	background: none;
@@ -363,7 +373,7 @@ body {
 	display: block;
 	position: relative;
 	margin: 20px auto;
-	padding: 5px;
+	padding: 5px 15px;
 	
 	background: rgba(0, 0, 0, 0.4);
 	box-shadow: 0px 0px 2px rgba(255, 255, 255, 0.3);
