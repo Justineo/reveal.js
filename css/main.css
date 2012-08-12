@@ -124,10 +124,10 @@ body {
 }
 
 .reveal h1 { font-size: 108px; 	}
-.reveal h2 { font-size: 76px;	}
-.reveal h3 { font-size: 60px;	}
-.reveal h4 { font-size: 48px;	}
-.reveal h5 { font-size: 36px; margin-bottom: 0; }
+.reveal h2 { font-size: 60px;	}
+.reveal h3 { font-size: 52px;	}
+.reveal h4 { font-size: 44px;	}
+.reveal h5 { font-size: 36px; margin-bottom: 5px; }
 
 .reveal h1 {
 	margin-top: 80px;
@@ -286,7 +286,7 @@ body {
 }
 
 .reveal small {
-	font-size: 60%;
+	font-size: 0.6em;
 	color: #ccc;
 	line-height: 1em;
 	vertical-align: baseline;
