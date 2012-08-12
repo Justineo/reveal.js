@@ -1,7 +1,11 @@
+@charset "UTF-8";
+
 /**
- * Main styles for reveal.js 
- *
- * @author Hakim El Hattab
+ * reveal.js
+ * http://lab.hakim.se/reveal-js
+ * MIT licensed
+ * 
+ * Copyright (C) 2011-2012 Hakim El Hattab, http://hakim.se
  */
 
 
@@ -30,16 +34,50 @@
 	font-style: normal;
 }
 
+
+/*********************************************
+ * RESET STYLES
+ *********************************************/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+
 /*********************************************
  * GLOBAL STYLES
  *********************************************/
 
-html, body {
+html, 
+body {
 	padding: 0;
 	margin: 0;
 	width: 100%;
 	height: 100%;
 	min-height: 600px;
+	overflow: hidden;
 }
 
 body {
@@ -63,6 +101,7 @@ body {
 	background: -ms-radial-gradient(center, ellipse cover,  rgba(85,90,95,1) 0%,rgba(28,30,32,1) 100%);
 	background: radial-gradient(center, ellipse cover,  rgba(85,90,95,1) 0%,rgba(28,30,32,1) 100%);
 }
+
 
 /*********************************************
  * HEADERS
@@ -90,14 +129,6 @@ body {
 .reveal h4 { font-size: 48px;	}
 .reveal h5 { font-size: 36px; margin-bottom: 0; }
 
-.reveal h1.inverted,
-.reveal h2.inverted,
-.reveal h3.inverted,
-.reveal h4.inverted {
-	color: #fff;
-	text-shadow: 0px 0px 2px rgba(0,0,0,0.2);
-}
-
 .reveal h1 {
 	margin-top: 80px;
 
@@ -116,6 +147,19 @@ body {
 
 .reveal h1 abbr {
 	border-bottom: 5px dotted #ccc;
+}
+
+
+@media screen and (max-width: 900px) {
+	body {
+		font-size: 30px;
+	}
+}
+
+::selection { 
+	background:gold; 
+	color:#fff; 
+	text-shadow: none; 
 }
 
 
@@ -188,6 +232,11 @@ body {
 	margin-bottom: 10px;
 }
 
+.reveal q,
+.reveal blockquote {
+	quotes: none;
+}
+
 .reveal blockquote {
 	display: block;
 	position: relative;
@@ -241,6 +290,13 @@ body {
 	color: #ccc;
 	line-height: 1em;
 	vertical-align: baseline;
+}
+
+.reveal sup { 
+	vertical-align: super;
+}
+.reveal sub { 
+	vertical-align: sub;
 }
 
 .reveal q {	
@@ -399,6 +455,7 @@ body {
 	float: right;
 }
 
+
 /*********************************************
  * CONTROLS
  *********************************************/
@@ -417,16 +474,12 @@ body {
 }
 	
 	.reveal .controls a {
-		font-size: 30px;
+		font-size: 0.83em;
 		position: absolute;
 		opacity: 0.1;
-		color: #fff;
 	}
 		.reveal .controls a.enabled {
 			opacity: 0.6;
-			color: hsl(185, 85%, 70%);
-
-			text-shadow: 0px 0px 2px hsla(185, 45%, 70%, 0.3);
 		}
 		.reveal .controls a.enabled:active {
 			margin-top: 1px;
@@ -448,7 +501,6 @@ body {
 	.reveal .controls .down {
 		left: 30px;
 		top: 60px;
-
 	}
 
 
@@ -463,13 +515,10 @@ body {
 	width: 100%;
 	bottom: 0;
 	left: 0;
-
-	background: rgba(0,0,0,0.2);
 }
 	
 	.reveal .progress span {
 		display: block;
-		background: hsl(185, 85%, 50%);
 		height: 100%;
 		width: 0px;
 
@@ -525,6 +574,10 @@ body {
        -moz-transform-style: preserve-3d;
         -ms-transform-style: preserve-3d;
             transform-style: preserve-3d;
+
+    -webkit-backface-visibility: hidden;
+       -moz-backface-visibility: hidden;
+            backface-visibility: hidden;
 }
     .reveal .roll:hover span {
         background: rgba(0,0,0,0.5);
@@ -543,18 +596,15 @@ body {
     top: 0;
     padding: 0 2px;
 
-    color: #fff;
-    background: hsl(185, 60%, 35%);
-
     -webkit-transform-origin: 50% 0%;
        -moz-transform-origin: 50% 0%;
         -ms-transform-origin: 50% 0%;
             transform-origin: 50% 0%;
 
-    -webkit-transform: translate3d( 0px, 105%, 0px ) rotateX( -90deg );
-       -moz-transform: translate3d( 0px, 105%, 0px ) rotateX( -90deg );
-        -ms-transform: translate3d( 0px, 105%, 0px ) rotateX( -90deg );
-            transform: translate3d( 0px, 105%, 0px ) rotateX( -90deg );
+    -webkit-transform: translate3d( 0px, 110%, 0px ) rotateX( -90deg );
+       -moz-transform: translate3d( 0px, 110%, 0px ) rotateX( -90deg );
+        -ms-transform: translate3d( 0px, 110%, 0px ) rotateX( -90deg );
+            transform: translate3d( 0px, 110%, 0px ) rotateX( -90deg );
 }
 
 
@@ -564,14 +614,14 @@ body {
 
 .reveal .slides {
 	position: absolute;
-	width: 900px;
-	height: 600px;
-	
+	max-width: 900px;
+	width: 80%;
+	height: 60%;
 	left: 50%;
 	top: 50%;
-	margin-left: -450px;
 	margin-top: -320px;
 	padding: 20px 0px;
+	overflow: visible;
 	
 	text-align: center;
 
@@ -586,10 +636,10 @@ body {
 	    -ms-perspective: 600px;
 	        perspective: 600px;
 
- 	-webkit-perspective-origin: 50% 25%;
- 	   -moz-perspective-origin: 50% 25%;
- 	    -ms-perspective-origin: 50% 25%;
- 	        perspective-origin: 50% 25%;
+ 	-webkit-perspective-origin: 0% 25%;
+ 	   -moz-perspective-origin: 0% 25%;
+ 	    -ms-perspective-origin: 0% 25%;
+ 	        perspective-origin: 0% 25%;
 }
 
 .reveal .slides>section,
@@ -617,6 +667,10 @@ body {
 	display: block;
 	z-index: 11;
 	opacity: 1;
+}
+
+.reveal .slides>section {
+	margin-left: -50%;
 }
 
 
@@ -654,9 +708,8 @@ body {
 }
 .reveal .slides>section>section.future {
 	display: block;
-	z-index: 9;
 	opacity: 0;
-
+	
 	-webkit-transform: translate3d(0, 50%, 0) rotateX(-70deg) translate3d(0, 50%, 0);
 	   -moz-transform: translate3d(0, 50%, 0) rotateX(-70deg) translate3d(0, 50%, 0);
 	    -ms-transform: translate3d(0, 50%, 0) rotateX(-70deg) translate3d(0, 50%, 0);
@@ -887,7 +940,7 @@ body {
 		height: 100%;
 		left: 0;
 		top: 0;
-		background: #232628;
+		background: rgba(0,0,0,0.2);
 
 		-webkit-transform: translateZ( -20px );
 		   -moz-transform: translateZ( -20px );
@@ -967,68 +1020,6 @@ body {
 
 
 /*********************************************
- * NEON THEME
- *********************************************/
-
-.theme-neon .reveal a,
-.theme-neon .reveal a:hover,
-.theme-neon .reveal .controls a.enabled {
-	color: #5de048;
-}
-
-.theme-neon .reveal .progress span,
-.theme-neon .reveal .roll span:after {
-	background: #5de048;
-}
-
-.theme-neon .reveal a.image:hover img {
-	border-color: #5de048;
-}
-
-
-/*********************************************
- * BEIGE THEME
- *********************************************/
-
-.theme-beige body {
-	color: #333;
-
-	background: #f7f3de;
-	background: -moz-radial-gradient(center, ellipse cover,  rgba(255,255,255,1) 0%, rgba(247,242,211,1) 100%);
-	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(247,242,211,1)));
-	background: -webkit-radial-gradient(center, ellipse cover,  rgba(255,255,255,1) 0%,rgba(247,242,211,1) 100%);
-	background: -o-radial-gradient(center, ellipse cover,  rgba(255,255,255,1) 0%,rgba(247,242,211,1) 100%);
-	background: -ms-radial-gradient(center, ellipse cover,  rgba(255,255,255,1) 0%,rgba(247,242,211,1) 100%);
-	background: radial-gradient(center, ellipse cover,  rgba(255,255,255,1) 0%,rgba(247,242,211,1) 100%);
-}
-
-.theme-beige .reveal h1,
-.theme-beige .reveal h2,
-.theme-beige .reveal h3,
-.theme-beige .reveal h4,
-.theme-beige .reveal h5,
-.theme-beige .reveal h6 {
-	color: #333;
-	text-shadow: none;
-}
-
-.theme-beige .reveal a,
-.theme-beige .reveal a:hover,
-.theme-beige .reveal .controls a.enabled {
-	color: #8b743d;
-}
-
-.theme-beige .reveal .progress span,
-.theme-beige .reveal .roll span:after {
-	background: #8b743d;
-}
-
-.theme-beige .reveal a.image:hover img {
-	border-color: #8b743d;
-}
-
-
-/*********************************************
  * OVERVIEW
  *********************************************/
 
@@ -1041,6 +1032,8 @@ body {
 
 .reveal.overview .slides section {
 	padding: 20px 0;
+	max-height: 600px;
+	overflow: hidden;	
 	opacity: 1;
 	cursor: pointer;
 	background: rgba(0,0,0,0.1);
@@ -1066,6 +1059,7 @@ body {
 .reveal.overview .slides>section.stack {
 	background: none;
 	padding: 0;
+	overflow: visible;
 }
 
 
@@ -1078,14 +1072,17 @@ body {
 }
 
 .no-transforms .slides section {
+	display: block!important;
+	opacity: 1!important;
+	position: relative!important;
+	height: auto;
+	min-height: auto;
+	margin-bottom: 100px;
+
 	-webkit-transform: none;
 	   -moz-transform: none;
 	    -ms-transform: none;
 	        transform: none;
-	
-	display: block!important;
-	opacity: 1!important;
-	position: relative!important;
 }
 
 
@@ -1115,6 +1112,7 @@ body {
 	background: rgba( 0, 0, 0, 0.6 );
 }
 
+
 /*********************************************
  * SPEAKER NOTES
  *********************************************/
@@ -1122,6 +1120,7 @@ body {
 .reveal aside.notes {
 	display: none;
 }
+
 
 /*********************************************
  * FAVICON

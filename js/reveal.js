@@ -1,9 +1,11 @@
 /*!
- * reveal.js 1.4
+
+ * reveal.js 2.0 r18
  * http://lab.hakim.se/reveal-js
  * MIT licensed
  * 
- * Copyright (C) 2012 Hakim El Hattab, http://hakim.se
+ * Copyright (C) 2011-2012 Hakim El Hattab, http://hakim.se
+
  */
 var Reveal = (function(){
 	
@@ -12,9 +14,7 @@ var Reveal = (function(){
 
 		IS_TOUCH_DEVICE = !!( 'ontouchstart' in window ),
 
-		// The horizontal and verical index of the currently active slide
-		indexh = 0,
-		indexv = 0,
+
 
 		// Configurations defaults, can be overridden at initialization time 
 		config = {
@@ -26,6 +26,11 @@ var Reveal = (function(){
 
 			// Push each slide change to the browser history
 			history: false,
+
+
+			// Enable keyboard shortcuts for navigation
+			keyboard: true,
+
 
 			// Loop the presentation
 			loop: false,
@@ -40,12 +45,22 @@ var Reveal = (function(){
 			// Apply a 3D roll to links on hover
 			rollingLinks: true,
 
-			// UI style
-			theme: 'default', // default/neon/beige
 
 			// Transition style
-			transition: 'default' // default/cube/page/concave/linear(2d)
+			transition: 'default', // default/cube/page/concave/linear(2d),
+
+			// Script dependencies to load
+			dependencies: []
 		},
+
+		// The horizontal and verical index of the currently active slide
+		indexh = 0,
+		indexv = 0,
+
+		// The previous and current slide HTML elements
+		previousSlide,
+		currentSlide,
+
 
 		// Slides may hold a data-state attribute which we pick up and apply 
 		// as a class to the body. This list contains the combined state of 
@@ -56,20 +71,19 @@ var Reveal = (function(){
 		dom = {},
 
 		// Detect support for CSS 3D transforms
-		supports3DTransforms =  document.body.style['WebkitPerspective'] !== undefined || 
-                        		document.body.style['MozPerspective'] !== undefined ||
-                        		document.body.style['msPerspective'] !== undefined ||
-                        		document.body.style['OPerspective'] !== undefined ||
-                        		document.body.style['perspective'] !== undefined,
-        
-        supports2DTransforms =  document.body.style['WebkitTransform'] !== undefined || 
-                        		document.body.style['MozTransform'] !== undefined ||
-                        		document.body.style['msTransform'] !== undefined ||
-                        		document.body.style['OTransform'] !== undefined ||
-                        		document.body.style['transform'] !== undefined,
 
-        // Detect support for elem.classList
-        supportsClassList = !!document.body.classList;
+		supports3DTransforms =  'WebkitPerspective' in document.body.style ||
+                        		'MozPerspective' in document.body.style ||
+                        		'msPerspective' in document.body.style ||
+                        		'OPerspective' in document.body.style ||
+                        		'perspective' in document.body.style,
+        
+        supports2DTransforms =  'WebkitTransform' in document.body.style ||
+                        		'MozTransform' in document.body.style ||
+                        		'msTransform' in document.body.style ||
+                        		'OTransform' in document.body.style ||
+                        		'transform' in document.body.style,
+
 		
 		// Throttles mouse wheel navigation
 		mouseWheelTimeout = 0,
@@ -92,12 +106,12 @@ var Reveal = (function(){
 	
 	
 	/**
-	 * Starts up the slideshow by applying configuration
-	 * options and binding various events.
+
+	 * Starts up the presentation if the client is capable.
 	 */
 	function initialize( options ) {
-		
-		if( ( !supports2DTransforms && !supports3DTransforms ) || !supportsClassList ) {
+		if( ( !supports2DTransforms && !supports3DTransforms ) ) {
+
 			document.body.setAttribute( 'class', 'no-transforms' );
 
 			// If the browser doesn't support core features we won't be 
@@ -105,11 +119,18 @@ var Reveal = (function(){
 			return;
 		}
 
+
+		// Copy options over to our config object
+		extend( config, options );
+
+
 		// Cache references to DOM elements
 		dom.wrapper = document.querySelector( '.reveal' );
 		dom.progress = document.querySelector( '.reveal .progress' );
 		dom.progressbar = document.querySelector( '.reveal .progress span' );
-		
+
+
+
 		if ( config.controls ) {
 			dom.controls = document.querySelector( '.reveal .controls' );
 			dom.controlsLeft = document.querySelector( '.reveal .controls .left' );
@@ -118,19 +139,10 @@ var Reveal = (function(){
 			dom.controlsDown = document.querySelector( '.reveal .controls .down' );
 		}
 
-		addEventListeners();
 
-		// Copy options over to our config object
-		extend( config, options );
+		// Loads the dependencies and continues to #start() once done
+		load();
 
-		// Updates the presentation to match the current configuration values
-		configure();
-
-		// Read the initial hash
-		readURL();
-
-		// Start auto-sliding if it's enabled
-		cueAutoSlide();
 
 		// Set up hiding of the browser address bar
 		if( navigator.userAgent.match( /(iphone|ipod|android)/i ) ) {
@@ -145,9 +157,80 @@ var Reveal = (function(){
 		
 	}
 
+
+	/**
+	 * Loads the dependencies of reveal.js. Dependencies are 
+	 * defined via the configuration option 'dependencies' 
+	 * and will be loaded prior to starting/binding reveal.js. 
+	 * Some dependencies may have an 'async' flag, if so they 
+	 * will load after reveal.js has been started up.
+	 */
+	function load() {
+		var scripts = [],
+			scriptsAsync = [];
+
+		for( var i = 0, len = config.dependencies.length; i < len; i++ ) {
+			var s = config.dependencies[i];
+
+			// Load if there's no condition or the condition is truthy
+			if( !s.condition || s.condition() ) {
+				if( s.async ) {
+					scriptsAsync.push( s.src );
+				}
+				else {
+					scripts.push( s.src );
+				}
+
+				// Extension may contain callback functions
+				if( typeof s.callback === 'function' ) {
+					head.ready( s.src.match( /([\w\d_-]*)\.?[^\\\/]*$/i )[0], s.callback );
+				}
+			}
+		}
+
+		// Called once synchronous scritps finish loading
+		function proceed() {
+			// Load asynchronous scripts
+			head.js.apply( null, scriptsAsync );
+			
+			start();
+		}
+
+		if( scripts.length ) {
+			head.ready( proceed );
+
+			// Load synchronous scripts
+			head.js.apply( null, scripts );
+		}
+		else {
+			proceed();
+		}
+	}
+
+	/**
+	 * Starts up reveal.js by binding input events and navigating 
+	 * to the current URL deeplink if there is one.
+	 */
+	function start() {
+		// Subscribe to input
+		addEventListeners();
+
+		// Updates the presentation to match the current configuration values
+		configure();
+
+		// Read the initial hash
+		readURL();
+
+		// Start auto-sliding if it's enabled
+		cueAutoSlide();
+	}
+
+	/**
+	 * Applies the configuration settings from the config object.
+	 */
 	function configure() {
 		if( supports3DTransforms === false ) {
-			// Fall back on the 2D transform theme 'linear'
+
 			config.transition = 'linear';
 		}
 
@@ -155,7 +238,9 @@ var Reveal = (function(){
 			dom.controls.style.display = 'block';
 		}
 
-		if( config.progress ) {
+
+		if( config.progress && dom.progress ) {
+
 			dom.progress.style.display = 'block';
 		}
 
@@ -163,9 +248,7 @@ var Reveal = (function(){
 			dom.wrapper.classList.add( config.transition );
 		}
 
-		if( config.theme !== 'default' ) {
-			document.documentElement.classList.add( 'theme-' + config.theme );
-		}
+
 
 		if( config.mouseWheel ) {
 			document.addEventListener( 'DOMMouseScroll', onDocumentMouseScroll, false ); // FF
@@ -179,11 +262,18 @@ var Reveal = (function(){
 	}
 
 	function addEventListeners() {
-		document.addEventListener( 'keydown', onDocumentKeyDown, false );
+
+
 		document.addEventListener( 'touchstart', onDocumentTouchStart, false );
 		document.addEventListener( 'touchmove', onDocumentTouchMove, false );
 		document.addEventListener( 'touchend', onDocumentTouchEnd, false );
 		window.addEventListener( 'hashchange', onWindowHashChange, false );
+
+
+		if( config.keyboard ) {
+			document.addEventListener( 'keydown', onDocumentKeyDown, false );
+		}
+
 
 		if ( config.controls && dom.controls ) {
 			dom.controlsLeft.addEventListener( 'click', preventAndForward( navigateLeft ), false );
@@ -434,7 +524,9 @@ var Reveal = (function(){
 	 * Wrap all links in 3D goodness.
 	 */
 	function linkify() {
-        if( supports3DTransforms ) {
+
+		if( supports3DTransforms && !( 'msPerspective' in document.body.style ) ) {
+
         	var nodes = document.querySelectorAll( '.reveal .slides section a:not(.image)' );
 
 	        for( var i = 0, len = nodes.length; i < len; i++ ) {
@@ -644,6 +736,11 @@ var Reveal = (function(){
 	 * set indices. 
 	 */
 	function slide( h, v ) {
+
+		// Remember where we were at before
+		previousSlide = currentSlide;
+
+
 		// Remember the state before this slide
 		var stateBefore = state.concat();
 
@@ -680,7 +777,9 @@ var Reveal = (function(){
 		}
 
 		// Update progress if enabled
-		if( config.progress ) {
+
+		if( config.progress && dom.progress ) {
+
 			dom.progressbar.style.width = ( indexh / ( document.querySelectorAll( HORIZONTAL_SLIDES_SELECTOR ).length - 1 ) ) * window.innerWidth + 'px';
 		}
 
@@ -694,31 +793,39 @@ var Reveal = (function(){
 		clearTimeout( writeURLTimeout );
 		writeURLTimeout = setTimeout( writeURL, 1500 );
 
-		// Only fire if the slide index is different from before
+
+		// Query all horizontal slides in the deck
+		var horizontalSlides = document.querySelectorAll( HORIZONTAL_SLIDES_SELECTOR );
+
+		// Find the current horizontal slide and any possible vertical slides
+		// within it
+		var currentHorizontalSlide = horizontalSlides[ indexh ],
+			currentVerticalSlides = currentHorizontalSlide.querySelectorAll( 'section' );
+
+		// Store references to the previous and current slides
+		currentSlide = currentVerticalSlides[ indexv ] || currentHorizontalSlide;
+
+		// Dispatch an event if the slide changed
 		if( indexh !== indexhBefore || indexv !== indexvBefore ) {
-			// Query all horizontal slides in the deck
-			var horizontalSlides = document.querySelectorAll( HORIZONTAL_SLIDES_SELECTOR );
-
-			// Find the previous and current horizontal slides
-			var previousHorizontalSlide = horizontalSlides[ indexhBefore ],
-				currentHorizontalSlide = horizontalSlides[ indexh ];
-
-			// Query all vertical slides inside of the previous and current horizontal slides
-			var previousVerticalSlides = previousHorizontalSlide.querySelectorAll( 'section' );
-				currentVerticalSlides = currentHorizontalSlide.querySelectorAll( 'section' );
-
-			// Dispatch an event notifying observers of the change in slide
 			dispatchEvent( 'slidechanged', {
-				// Include the current indices in the event
 				'indexh': indexh, 
 				'indexv': indexv,
-
-				// Passes direct references to the slide HTML elements, attempts to find
-				// a vertical slide and falls back on the horizontal parent
-				'previousSlide': previousVerticalSlides[ indexvBefore ] || previousHorizontalSlide,
-				'currentSlide': currentVerticalSlides[ indexv ] || currentHorizontalSlide
+				'previousSlide': previousSlide,
+				'currentSlide': currentSlide
 			} );
 		}
+		else {
+			// Ensure that the previous slide is never the same as the current
+			previousSlide = null;
+		}
+
+		// Solves an edge case where the previous slide maintains the 
+		// 'present' class when navigating between adjacent vertical 
+		// stacks
+		if( previousSlide ) {
+			previousSlide.classList.remove( 'present' );
+		}
+
 	}
 
 	/**
@@ -765,12 +872,14 @@ var Reveal = (function(){
 	function readURL() {
 		// Break the hash down to separate components
 		var bits = window.location.hash.slice(2).split('/');
-		
+
+
 		// Read the index components of the hash
-		indexh = parseInt( bits[0] ) || 0 ;
-		indexv = parseInt( bits[1] ) || 0 ;
-		
-		navigateTo( indexh, indexv );
+		var h = parseInt( bits[0] ) || 0 ;
+		var v = parseInt( bits[1] ) || 0 ;
+
+		navigateTo( h, v );
+
 	}
 	
 	/**
@@ -974,15 +1083,51 @@ var Reveal = (function(){
 		navigateNext: navigateNext,
 		toggleOverview: toggleOverview,
 
+
+		// Adds or removes all internal event listeners (such as keyboard)
 		addEventListeners: addEventListeners,
 		removeEventListeners: removeEventListeners,
 
+		// Returns the indices of the current slide
+		getIndices: function() {
+			return { 
+				h: indexh, 
+				v: indexv 
+			};
+		},
+
+		// Returns the previous slide element, may be null
+		getPreviousSlide: function() {
+			return previousSlide
+		},
+
+		// Returns the current slide element
+		getCurrentSlide: function() {
+			return currentSlide
+		},
+
+		// Helper method, retrieves query string as a key/value hash
+		getQueryHash: function() {
+			var query = {};
+
+			location.search.replace( /[A-Z0-9]+?=(\w*)/gi, function(a) {
+				query[ a.split( '=' ).shift() ] = a.split( '=' ).pop();
+			} );
+
+			return query;
+		},
+
 		// Forward event binding to the reveal DOM element
 		addEventListener: function( type, listener, useCapture ) {
-			( dom.wrapper || document.querySelector( '.reveal' ) ).addEventListener( type, listener, useCapture );
+			if( 'addEventListener' in window ) {
+				( dom.wrapper || document.querySelector( '.reveal' ) ).addEventListener( type, listener, useCapture );
+			}
 		},
 		removeEventListener: function( type, listener, useCapture ) {
-			( dom.wrapper || document.querySelector( '.reveal' ) ).removeEventListener( type, listener, useCapture );
+			if( 'addEventListener' in window ) {
+				( dom.wrapper || document.querySelector( '.reveal' ) ).removeEventListener( type, listener, useCapture );
+			}
+
 		}
 	};
 	
