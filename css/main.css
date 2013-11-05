@@ -86,7 +86,7 @@ body {
 	margin: 0;
 	overflow: hidden;
 	
-	font-family: 'Myriad Pro', 'Hiragino Sans GB W3', 'Hiragino Sans GB', 'WenQuanYi Zen Hei', 'Microsoft Yahei', sans-serif;
+	font-family: 'Myriad Pro', 'Helvetica Neue', 'Segoe UI', Arial, 'Hiragino Sans GB W3', 'Hiragino Sans GB', 'WenQuanYi Micro Hei', 'Microsoft Yahei', sans-serif;
 	font-size: 36px;
 	font-weight: 200;
 	letter-spacing: -0.02em;
@@ -118,7 +118,6 @@ body {
 	line-height: 0.9em;
 	letter-spacing: 0.02em;
 	
-	font-family: 'Myriad Pro', 'Hiragino Sans GB', 'Hiragino Sans GB W6', 'WenQuanYi Zen Hei', 'Microsoft Yahei', sans-serif;
 	font-weight: bold;
 	text-shadow: 0px 2px 3px rgba(0,0,0,0.8);
 }
@@ -157,8 +156,8 @@ body {
 }
 
 ::selection { 
-	background:gold; 
-	color:#fff; 
+	background: gold; 
+	color: #fff; 
 	text-shadow: none; 
 }
 
@@ -196,13 +195,23 @@ body {
 }
 
 .reveal strong {
-	font-weight: normal;
-	color: gold;
+	color: khaki;
+}
+
+.reveal mark {
+	border-radius: 1px;
+	padding: 0 5px;
+	background-color: rgba(255, 215, 0, 0.6);
+	color: #fff;
 }
 
 .reveal em, 
 .reveal i {
 	font-style: italic;
+}
+
+.reveal em {
+	color: khaki;
 }
 
 .reveal ol, 
@@ -244,7 +253,6 @@ body {
 	margin: 5px auto;
 	padding: 15px;
 	
-	font-style: italic;
 	background: rgba(255, 255, 255, 0.05);
 	box-shadow: 0px 0px 2px rgba(0,0,0,0.2);
 }
@@ -464,6 +472,10 @@ body {
 
 .reveal .exclusive {
 	margin-top: 25%;
+}
+
+.reveal .separated {
+	margin: 3em;
 }
 
 .reveal .pull-left {
@@ -733,10 +745,10 @@ body {
 	display: block;
 	opacity: 0;
 	
-	-webkit-transform: translate3d(0, 50%, 0) rotateX(-70deg) translate3d(0, 50%, 0);
-	   -moz-transform: translate3d(0, 50%, 0) rotateX(-70deg) translate3d(0, 50%, 0);
-	    -ms-transform: translate3d(0, 50%, 0) rotateX(-70deg) translate3d(0, 50%, 0);
-	        transform: translate3d(0, 50%, 0) rotateX(-70deg) translate3d(0, 50%, 0);
+	-webkit-transform: translate3d(0, 50%, 0) rotateX(0deg) translate3d(0, 50%, 0);
+	   -moz-transform: translate3d(0, 50%, 0) rotateX(0deg) translate3d(0, 50%, 0);
+	    -ms-transform: translate3d(0, 50%, 0) rotateX(0deg) translate3d(0, 50%, 0);
+	        transform: translate3d(0, 50%, 0) rotateX(0deg) translate3d(0, 50%, 0);
 }
 
 
