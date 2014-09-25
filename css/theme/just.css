@@ -5,11 +5,7 @@ body {
   background-color: #2b2b2b; }
 
 .reveal {
-<<<<<<< HEAD
-  font-family: "Helvetica Heue", "Segoe UI", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-=======
   font-family: "Helvetica Neue", "Segoe UI", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
->>>>>>> 476cd22ab32035738712510a6837771c841d617d
   font-size: 36px;
   font-weight: 100;
   letter-spacing: -0.02em;
@@ -34,11 +30,7 @@ body {
 .reveal h6 {
   margin: 0.8em 0 0.8em 0;
   color: #fff;
-<<<<<<< HEAD
-  font-family: "Helvetica Heue", "Segoe UI", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-=======
   font-family: "Helvetica Neue", "Segoe UI", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
->>>>>>> 476cd22ab32035738712510a6837771c841d617d
   font-weight: 100;
   letter-spacing: 0.02em; }
 
