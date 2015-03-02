@@ -3,11 +3,11 @@
  *********************************************/
 @font-face {
   font-family: 'profile';
-  src: url('../../font/profile.eot?65651127');
-  src: url('../../font/profile.eot?65651127#iefix') format('embedded-opentype'),
-       url('../../font/profile.woff?65651127') format('woff'),
-       url('../../font/profile.ttf?65651127') format('truetype'),
-       url('../../font/profile.svg?65651127#profile') format('svg');
+  src: url('../../fonts/profile.eot?65651127');
+  src: url('../../fonts/profile.eot?65651127#iefix') format('embedded-opentype'),
+       url('../../fonts/profile.woff?65651127') format('woff'),
+       url('../../fonts/profile.ttf?65651127') format('truetype'),
+       url('../../fonts/profile.svg?65651127#profile') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -54,7 +54,7 @@ body {
   background-color: #2b2b2b; }
 
 .reveal {
-  font-family: "Helvetica Neue", "Segoe UI", "Lantinghei SC", "Microsoft YaHei", sans-serif;
+  font-family: "Avenir Next", "Helvetica Neue", "Segoe UI", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
   font-size: 36px;
   font-weight: 100;
   letter-spacing: -0.02em;
@@ -79,7 +79,7 @@ body {
 .reveal h6 {
   margin: 0.8em 0 0.8em 0;
   color: #fff;
-  font-family: "Helvetica Neue", "Segoe UI", "Lantinghei SC", "Microsoft YaHei", sans-serif;
+  font-family: "Avenir Next", "Helvetica Neue", "Segoe UI", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
   font-weight: 100;
   letter-spacing: 0.02em; }
 
@@ -106,6 +106,14 @@ body {
 .reveal p.left /* backward compatible */ {
   text-align: left; }
 
+.reveal blockquote {
+  padding: 5px 25px;
+  text-align: justify; }
+
+.reveal blockquote footer {
+  font-size: 0.8em;
+  text-align: right; }
+
 .reveal abbr[title] {
   border-bottom: 1px dotted rgba(255, 255, 255, 0.3);
   cursor: help; }
@@ -119,6 +127,20 @@ body {
   font-style: normal;
   color: #f0e68c; }
 
+@supports ( -webkit-text-emphasis: filled circle ) {
+    .reveal em:lang(zh) {
+      -webkit-text-emphasis: filled circle;
+      -webkit-text-emphasis-position: under; }
+    .reveal em:not(:lang(zh)) {
+      font-style: italic; } }
+
+.reveal s,
+.reveal del {
+  color: rgba(255, 255, 255, 0.5);
+  -webkit-text-decoration-color: #fff;
+  -moz-text-decoration-color: #fff;
+  text-decoration-color: #fff; }
+
 .reveal sup,
 .reveal sub {
   font-size: 50%; }
@@ -130,9 +152,10 @@ body {
 .reveal pre,
 .reveal code,
 .reveal kbd {
-  font-family: Monaco, Consolas, monospace; }
+  font-family: Consolas, 'Courier New', monospace; }
 
 .reveal pre code {
+  max-height: 600px;
   padding: 8px 10px;
   font-size: 1.2rem; }
 
