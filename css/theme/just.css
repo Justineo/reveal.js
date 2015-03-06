@@ -149,12 +149,16 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: none; }
 
+.reveal code {
+  color: #88b; }
+
 .reveal pre,
 .reveal code,
 .reveal kbd {
   font-family: Consolas, 'Courier New', monospace; }
 
 .reveal pre code {
+  color: #dcdcdc;
   max-height: 600px;
   padding: 8px 10px;
   font-size: 1.2rem; }
@@ -163,6 +167,9 @@ body {
   line-height: 1.5;
   vertical-align: baseline;
   color: #ccc; }
+
+.reveal small * {
+  vertical-align: middle; }
 
 .reveal .alert {
   padding: 0 3px;
