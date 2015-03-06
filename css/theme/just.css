@@ -181,7 +181,7 @@ body {
  * LINKS
  *********************************************/
 .reveal a:not(.image) {
-  color: #13daec;
+  color: #ccffcc;
   text-decoration: none;
   -webkit-transition: color .15s ease;
   -moz-transition: color .15s ease;
@@ -190,7 +190,7 @@ body {
   transition: color .15s ease; }
 
 .reveal a:not(.image):hover {
-  color: #71e9f4;
+  color: #87ceeb;
   border: none; }
 
 .reveal .roll span:after {
@@ -320,11 +320,3 @@ body {
 
 .pull-left {
   float: left; }
-
-/*********************************************
- * PROFILE
- *********************************************/
-.reveal address a[class^="icon-"],
-.reveal address a[class*=" icon-"] {
-  color: #eee;
-}
