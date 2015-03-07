@@ -1,6 +1,41 @@
 /*********************************************
  * FONT FACES
  *********************************************/
+/* Source Code Pro */
+/* latin-ext */
+@font-face {
+  font-family: 'Source Code Pro';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Source Code Pro Light'), local('SourceCodePro-Light'), url(http://fontstatic.useso.com/s/sourcecodepro/v6/leqv3v-yTsJNC7nFznSMqTOFnJNygIkrHciC8BWzbCz3rGVtsTkPsbDajuO5ueQw.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Source Code Pro';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Source Code Pro Light'), local('SourceCodePro-Light'), url(http://fontstatic.useso.com/s/sourcecodepro/v6/leqv3v-yTsJNC7nFznSMqSP2LEk6lMzYsRqr3dHFImA.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Source Code Pro';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Source Code Pro'), local('SourceCodePro-Regular'), url(http://fontstatic.useso.com/s/sourcecodepro/v6/mrl8jkM18OlOQN8JLgasD4a1YDtoarzwSXxTHggEXMw.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Source Code Pro';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Source Code Pro'), local('SourceCodePro-Regular'), url(http://fontstatic.useso.com/s/sourcecodepro/v6/mrl8jkM18OlOQN8JLgasD5bPFduIYtoLzwST68uhz_Y.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+/* Profile Icon */
 @font-face {
   font-family: 'profile';
   src: url('../../fonts/profile.eot?65651127');
@@ -147,7 +182,8 @@ body {
 
 .reveal pre {
   border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: none; }
+  box-shadow: none;
+  line-height: 1.5; }
 
 .reveal code {
   color: #88b; }
@@ -155,13 +191,13 @@ body {
 .reveal pre,
 .reveal code,
 .reveal kbd {
-  font-family: Consolas, 'Courier New', monospace; }
+  font-family: 'Source Code Pro', Consolas, 'Courier New', monospace; }
 
 .reveal pre code {
   color: #dcdcdc;
   max-height: 600px;
   padding: 8px 10px;
-  font-size: 1.2rem; }
+  font-size: 90%; }
 
 .reveal small {
   line-height: 1.5;
