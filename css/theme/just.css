@@ -330,3 +330,21 @@ body {
 
 .pull-left {
   float: left; }
+
+/*********************************************
+ * EFFECTS
+ *********************************************/
+.reveal .slides section .fragment.highlight-em,
+.reveal .slides section .fragment.highlight-strong {
+  opacity: 1;
+}
+  .reveal .slides section .fragment.highlight-em.visible {
+    color: #f0e68c;
+  }
+  .reveal .slides section .fragment.highlight-em.visible:not(:lang(zh)) {
+    font-style: italic;
+  }
+  .reveal .slides section .fragment.highlight-strong.visible {
+    color: #90ee90;
+    font-weight: 400;
+  }
