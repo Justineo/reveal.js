@@ -288,6 +288,7 @@ body {
   border-spacing: 0; }
 
 .reveal table th {
+  background-color: rgba(255, 255, 255, 0.05);
   font-weight: 400; }
 
 .reveal table th,
